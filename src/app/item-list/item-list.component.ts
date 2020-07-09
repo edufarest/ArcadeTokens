@@ -26,7 +26,7 @@ export class ItemListComponent implements OnInit {
     console.log(item);
 
     this.tokensService.removeTokens(item.price);
-    this.ledgerService.addToLedger(`Bought ${item.name} for ${item.price} tokens`);
+    this.ledgerService.addToLedger({amount: item.price, description: item.name, inbound: false});
   }
 
 }

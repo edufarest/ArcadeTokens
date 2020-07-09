@@ -16,8 +16,13 @@ export class LedgerService {
   }
 
   addToLedger(transaction) {
-    this._ledger.push(transaction);
-    this.ledger.next(this._ledger);
+
+    if (transaction.description && transaction.amount) {
+      this._ledger.push(transaction);
+      this.ledger.next(this._ledger);
+    } else {
+      window.alert("Need to add a description");
+    }
   }
 
 }

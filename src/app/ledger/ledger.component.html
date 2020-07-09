@@ -1,5 +1,9 @@
 <h3>Ledger</h3>
 
-<div *ngFor="let entry of ledger">
-  <span>{{ entry }}</span>
+<div *ngFor="let entry of ledger" class="ledger-entry">
+  <span>{{ entry.description }}: 
+    <i *ngIf="!entry.inbound; else dollar" class="material-icons">stars</i>
+    <ng-template #dollar>$</ng-template>
+    {{ entry.amount }} 
+  </span>
 </div>

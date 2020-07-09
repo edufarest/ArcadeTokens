@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TokensService } from '../tokens.service';
+import { LedgerService } from '../ledger.service';
 import {FormBuilder} from '@angular/forms';
 
 @Component({
@@ -14,11 +15,13 @@ export class TokensComponent implements OnInit {
 
   constructor(
     private tokensService: TokensService,
+    private ledgerService: LedgerService,
     private formBuilder: FormBuilder
   ) {
 
     this.checkoutForm = this.formBuilder.group({
-      amount: 0
+      amount: 0,
+      description: ""
     });
 
   }
@@ -29,7 +32,10 @@ export class TokensComponent implements OnInit {
 
   }
 
-  onSubmit(amount) {
+  onSubmit(data) {
+
+    const amount = data.amount;
+    const desc   = data.description;
 
     if (amount < 1) {
       throw "Amount must be positive"
@@ -37,6 +43,7 @@ export class TokensComponent implements OnInit {
 
       this.checkoutForm.reset();
       this.tokensService.addTokens(amount);
+      this.ledgerService.addToLedger({amount: amount, description: desc, inbound: true});
       console.warn("Added tokens: ", amount);
 
     }

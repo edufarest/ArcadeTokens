@@ -7,7 +7,13 @@
 
 <div>
   <h5>Get more tokens: </h5>
-  <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value.amount)">
+  <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+
+    <label for="description">
+      Description
+    </label>
+
+    <input id="description" type="text" formControlName="description">
 
     <label for="amount">
       Amount
