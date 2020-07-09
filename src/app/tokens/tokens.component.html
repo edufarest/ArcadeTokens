@@ -1,0 +1,20 @@
+<h3>Tokens</h3>
+
+<div>
+  <h5>Your current balance is:</h5>
+  <span>{{ tokens }}</span>
+</div>
+
+<div>
+  <h5>Get more tokens: </h5>
+  <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value.amount)">
+
+    <label for="amount">
+      Amount
+    </label>
+
+    <input id="amount" type="number" min="0" formControlName="amount">
+
+    <button class="button" type="submit">Purchase</button>
+  </form>
+</div>

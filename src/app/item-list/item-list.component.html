@@ -1,0 +1,8 @@
+<h3>Items</h3>
+
+<div *ngFor="let item of items | async">
+  <span>{{ item.name }}</span>
+  <span>{{ item.price | currency}}</span>
+<!--  TODO ^ Create token pipe, instead of currency-->
+  <button (click)="purchaseItem(item)">Buy</button>
+</div>
